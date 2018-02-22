@@ -25,7 +25,7 @@ OptinSpin for WooCommerce converts website visitors into subscribers and custome
 If successful, click Activate Plugin to activate it, or return to plugin installer for further actions.
 
 
-##PREMIUM FEATURES
+### PREMIUM FEATURES
 - Fully Customizable layout
 - Change color of each section
 - Add as many sections as you want
@@ -52,10 +52,10 @@ If successful, click Activate Plugin to activate it, or return to plugin install
 **1.6**
 - Checked Code compatibility
 
-**1.5 **
+**1.5**
 - New Feature | Integration with ChatChamp
 
-** 1.4.3**
+**1.4.3**
 - Bug Fixed | Clickable Tab
 - Bug Fixed | Cookie issue
 - Bug Fixed | Responsive issue
