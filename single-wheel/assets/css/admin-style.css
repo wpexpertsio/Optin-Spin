@@ -1,0 +1,89 @@
+/*
+canvas#canvas {
+    float: right;
+    position: absolute;
+    right: -10%;
+    top: 30%;
+}
+
+img#spin_button {
+    position: absolute;
+    right: 5%;
+}
+*/
+
+.optinspin_mailchimp_label_class {
+    background-color: #efefef !important;
+    border-top: solid 1px #afafaf !important;
+    box-shadow: 0px 2px 1px #CCC;
+}
+
+
+.optinspin_remarkety_label_class {
+    background-color: #efefef !important;
+    border-top: solid 1px #afafaf !important;
+    box-shadow: 0px 2px 1px #CCC;
+}
+
+.optinspin_general_pro span {
+    background-color: orange;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.optinspin-pro-list {
+    background-color: #dbe9ff;
+    padding: 8px;
+    box-shadow: 0px 2px 3px #CCC;
+}
+
+.optinspin-pro-list p::before {
+    content: '- ';
+}
+
+.carbon-group-row .group-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 43px;
+    height: 100%;
+    line-height: 42px;
+    border-right: 1px solid #e5e5e5;
+    text-align: center;
+}
+
+.carbon-group-row div.ui-sortable-handle {
+    position: relative;
+    min-height: 1.5em;
+    padding: 12px 90px 12px 54px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    cursor: move;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #24282d;
+}
+
+.carbon-field.carbon-html.optinspin_get_pro a {
+    background-color: #2ecc3a !important;
+    border: none;
+    padding: 6px 35px;
+    font-size: 20px;
+    width: 30%;
+    color: white;
+    box-shadow: 2px 2px 3px #CCC;
+    text-decoration: none;
+}
+
+div.optinspin_get_pro {
+    border: none !important;
+}
+
+ul.carbon-tabs-nav li:last-child a {
+    background-color: orange;
+    font-weight: bold;
+    box-shadow: 0px 0px 6px orange;
+}

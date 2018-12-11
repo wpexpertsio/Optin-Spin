@@ -12,6 +12,11 @@ OptinSpin for WooCommerce converts website visitors into subscribers and custome
 - MailChimp ready
 - CLICKABLE TAB
 - Integration with ChatChamp
+- facebook messenger Ready
+- Easy Digital Downloads Ready
+- wordpress custom link support
+- wordpress coupon sports
+- myCRED Support
 
 ### Installation
 
@@ -27,27 +32,65 @@ If successful, click Activate Plugin to activate it, or return to plugin install
 
 ### PREMIUM FEATURES
 - Fully Customizable layout
-- Change color of each section
-- Add as many sections as you want
+- Change color/settings of each section or segment.
+- Add as many sections as you want, UNLIMITED not just 8 or 12.
 - Manage sections with drag and drop functionality
 - Set Probability for each section
 - Add your own logo
-- MailChimp ready
+- MailChimp Ready
+- Zapier Ready
+- Mailster Ready
 - Remarkety Ready
+- Active Campaign Ready
 - Customizable Email templates
+- Functionality to share download links on winning
+- Functionality to share custom coupon text on winning
 - Link WooCommerce Coupons dynamically
-- Genearate Unique coupons dynamically on the fly
+- Genearate Unique coupons dynamically on the fly.
+- Offer free shipping instead of coupon or no win.
 - Enable/disable sound while wheel spins
 - Enable/disable party poppers on WINNING
-- TIME DELAY
-- CLICKABLE TAB
-- DESKTOP EXIT INTENT
-- MOBILE EXIT INTENT
+- Time Delay
+- Clickable Tab
+- Desktop Exit Intent
+- Mobile on scroll
+- WPML Support
+- Add class to any Link, CTA or Button
+- Choose where to display slider, sitewide or specific pages.
+- Urgency bar at footer after winning coupon, with timer for coupon expiration.
 - Add your privacy link
-- Complete documentation
+- Complete Documentation
 
 
 ## Changelog
+
+**2.2**
+- New Feature - Added myCRED Points Functionality
+- New Feature - You can use myCRED points for each slices of your wheel
+
+**2.1**
+- New Feature - Steps User Interface
+- New Feature - Set Max Availability for each section
+- New Feature - Unlimited Wheel Slices
+- Improvement - New backend UI
+
+**2.0**
+- Improvement - Fixed JS Issues
+
+**1.9**
+- New Feature - Added Easy Digital Downloads Feature. Now you can give Easy Digital Downloads coupons to your customers.
+- Improvement - Added help submenu with basic setup instructions
+
+**1.8.1**
+- Bug Fixed - Fixed woocommerce error
+
+**1.8**
+- New Feature - Now you have option to play OptinSpin without WooCommerce as well
+- New Feature - Added coupon text field
+- New Feature - Added coupon link to redirect external URL
+
+**1.7**
+- Fixed MailChimp fields Checked conditions
 
 **1.6**
 - Checked Code compatibility

@@ -1,89 +1,144 @@
-/*
-canvas#canvas {
-    float: right;
-    position: absolute;
-    right: -10%;
-    top: 30%;
+.optinspin-into-wrapper {
+    background-color: white;
+    margin: 10px 0px;
+    min-height: 800px;
+    padding: 20px 10px;
+    width: 97%;
 }
 
-img#spin_button {
-    position: absolute;
-    right: 5%;
-}
-*/
-
-.optinspin_mailchimp_label_class {
-    background-color: #efefef !important;
-    border-top: solid 1px #afafaf !important;
-    box-shadow: 0px 2px 1px #CCC;
+.optinspin-into-wrapper .optinspin-title {
+    font-size: 38px;
+    font-weight: 100;
 }
 
-
-.optinspin_remarkety_label_class {
-    background-color: #efefef !important;
-    border-top: solid 1px #afafaf !important;
-    box-shadow: 0px 2px 1px #CCC;
+.optinspin-fields {
+    margin: 4% 0px;
 }
 
-.optinspin_general_pro span {
-    background-color: orange;
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.optinspin-pro-list {
-    background-color: #dbe9ff;
-    padding: 8px;
-    box-shadow: 0px 2px 3px #CCC;
-}
-
-.optinspin-pro-list p::before {
-    content: '- ';
-}
-
-.carbon-group-row .group-number {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 43px;
-    height: 100%;
-    line-height: 42px;
-    border-right: 1px solid #e5e5e5;
+.optinspin-features {
     text-align: center;
 }
 
-.carbon-group-row div.ui-sortable-handle {
-    position: relative;
-    min-height: 1.5em;
-    padding: 12px 90px 12px 54px;
-    background: #fafafa;
-    border: 1px solid #e5e5e5;
-    cursor: move;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.5;
-    color: #24282d;
+.optinspin-banner {
+    text-align: center;
 }
 
-.carbon-field.carbon-html.optinspin_get_pro a {
-    background-color: #2ecc3a !important;
-    border: none;
-    padding: 6px 35px;
+.optinspin-into-wrapper .optinspin-title {
+    font-size: 58px;
+    font-weight: 100;
+    margin: 20px 5px;
+}
+
+.optinspin-para {
+    margin: 36px 5px;
     font-size: 20px;
-    width: 30%;
-    color: white;
-    box-shadow: 2px 2px 3px #CCC;
+    line-height: 28px;
+    font-weight: 100;
+    margin: 0 auto;
+    width: 50%;
+}
+
+.optinspin-fields {
+    text-align: center;
+}
+
+.optinspin-understand-btn {
+    display: none;
+}
+
+#optinspin-btn-submit {
+    font-size: 30px;
+    padding: 0px 32px;
+    height: 60px;
+    background-color: #fafafa;
+    color: #797979;
+    text-shadow: 0px 0px 0px;
+    border: solid 1px #CCC;
+    box-shadow: 0px 3px 0px #d2d2d2;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+a#optinspin-btn-submit {
+    font-size: 30px;
+    padding: 10px 32px;
+    height: 60px;
+    background-color: #fafafa;
+    color: #797979;
+    text-shadow: 0px 0px 0px;
+    border: solid 1px #CCC;
+    box-shadow: 0px 3px 0px #d2d2d2;
+    cursor: pointer;
+    font-weight: bold;
     text-decoration: none;
 }
 
-div.optinspin_get_pro {
-    border: none !important;
+.optinspin-understand {
+    font-size: 22px;
 }
 
-ul.carbon-tabs-nav li:last-child a {
-    background-color: orange;
-    font-weight: bold;
-    box-shadow: 0px 0px 6px orange;
+#optinspin-btn-submit:hover {
+    background-color: white;
+}
+
+.optinspin-fields {
+    border-top: solid 1px #dcdcdc;
+    line-height: 100px;
+}
+
+.optinspin-get-ready {
+    display: none;
+}
+
+.optinspin-get-ready p {
+    font-size: 20px;
+}
+
+input#optinspin_not_understand {
+    font-size: 24px;
+    padding: 0px 32px;
+    height: 60px;
+    background-color: #f35454;
+    color: #525252;
+    text-shadow: 0px 0px 0px;
+    border: solid 1px #d83b3b;
+    box-shadow: 0px 3px 0px #d61111;
+    cursor: pointer;
+    color: white;
+    cursor: pointer;
+}
+
+input#optinspin_understand {
+    font-size: 24px;
+    padding: 0px 32px;
+    height: 60px;
+    background-color: #00a0d2;
+    color: #525252;
+    text-shadow: 0px 0px 0px;
+    border: solid 1px #54b7f1;
+    box-shadow: 0px 3px 0px #086d8c;
+    cursor: pointer;
+    color: white;
+    cursor: pointer;
+}
+
+.warning p {
+    font-size: 16px;
+    text-align: justify;
+    margin: 15px 48px;
+}
+
+.warning span {
+    color: #9e9e23;
+}
+
+.warning span, .warning div {
+    float: left;
+    font-size: 45px;
+}
+
+.warning {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 24px;
 }

@@ -12,20 +12,22 @@ Class optinspin_Settings {
 
     function optinspin_add_settings_page() {
 
-		$optinspin_mailchimp_get_list = get_option( 'optinspin_mailchimp_get_list');
-		if(!empty($optinspin_mailchimp_get_list)){
-			$optinspin_mailchimp_get_list = json_decode($optinspin_mailchimp_get_list);
-			if(!empty($optinspin_mailchimp_get_list->data)){
-				$arraysfor_optinspin_mailchimp_get_list[''] = 'Select Email List';
-				foreach($optinspin_mailchimp_get_list->data as $data){
-					$arraysfor_optinspin_mailchimp_get_list[$data->id] =  $data->name;
-				}
-			} else {
-				$arraysfor_optinspin_mailchimp_get_list[''] = 'Email List not found!';
-			}
-		}else{
-			$arraysfor_optinspin_mailchimp_get_list[''] = 'Email List not found!';
-		}
+        $optinspin_mailchimp_get_list = get_option( 'optinspin_mailchimp_get_list');
+        if(!empty($optinspin_mailchimp_get_list)){
+            $optinspin_mailchimp_get_list = json_decode($optinspin_mailchimp_get_list);
+            if(!empty($optinspin_mailchimp_get_list->data)){
+                $arraysfor_optinspin_mailchimp_get_list[''] = 'Select Email List';
+                foreach($optinspin_mailchimp_get_list->data as $data){
+                    $arraysfor_optinspin_mailchimp_get_list[$data->id] =  $data->name;
+                }
+            } else {
+                $arraysfor_optinspin_mailchimp_get_list[''] = 'Email List not found!';
+            }
+        }else{
+            $arraysfor_optinspin_mailchimp_get_list[''] = 'Email List not found!';
+        }
+		
+		do_action('opt_before_settings');
 
         Container::make( 'theme_options', __( 'Optin Spin', 'optinspin ' ) )
 
@@ -111,28 +113,8 @@ Class optinspin_Settings {
                         <p>Enable Party Poopers After winnign</p></div>'
                     )
                     ->set_classes( 'optinspin_general_pro' ),
-                ))
+            ))
 
-                ->add_tab( __('Triggers'), array(
-                    
-                Field::make( 'separator', 'optinspin_wheel_clickable_tab', 'Open Spin By Clickable Tab' ),
-                       
-                Field::make( 'checkbox', 'optinspin_enable_clickable_tab_desktop', 'Show Clickable Tab on Desktop' )
-                    ->set_option_value( 'Enable Time Delay Popup on Deskto' ),
-                    
-                Field::make( 'checkbox', 'optinspin_enable_clickable_tab_mobile', 'Show Clickable Tab on Mobile' )
-                    ->set_option_value( 'Enable Intent Exit Popup on Mobile' ),
-
-                Field::make( 'html', 'crb_pro_text_trigger' )
-                        ->set_html( '<div class="optinspin-pro-head"><h1>OptinSpin <span>PRO</span></h1></div>
-                        <div class="optinspin-pro-list">
-                        <p>Enable Time Delay Optin on Desktop</p>
-                        <p>Enable Time Delay Optin on Mobile</p>
-                        <p>Enable Intent Exit Popup for Desktop</p>
-                        <p>Enable Intent Exit Popup for Mobile</p></div>'
-                    )
-                    ->set_classes( 'optinspin_general_pro' ),
-                ) )
             ->add_tab( __('Section'), array(
 
                 Field::make( 'complex', 'crb_section' )
@@ -162,6 +144,9 @@ Class optinspin_Settings {
                             ->set_help_text('Label of wheel section')
                             ->set_classes( 'optinspin_section_label' ),
 
+                        Field::make( 'radio', 'optinspin_coupon_type', 'Coupon Type' )
+                            ->add_options( $this->optinspin_coupon_options() ),
+
                         Field::make( 'select', 'optinspin_coupon', 'Coupon' )
                             ->add_options( $this->get_list_coupons() )
                             ->set_help_text('Choose Coupon for this section')
@@ -170,6 +155,45 @@ Class optinspin_Settings {
                                 array(
                                     'field' => 'optinspin_section_generate_coupon',
                                     'value' => false,
+                                ),
+								array(
+                                    'field' => 'optinspin_coupon_type',
+                                    'value' => 'woocommere_coupon',
+                                )
+                            ) ),
+
+                        Field::make( 'select', 'optinspin_edd_coupon', 'EDD Coupon' )
+                            ->add_options( $this->get_edd_coupon_list() )
+                            ->set_help_text('Choose Coupon for this section')
+                            ->set_classes( 'optinspin_coupon_list' )
+                            ->set_conditional_logic( array(
+                                array(
+                                    'field' => 'optinspin_coupon_type',
+                                    'value' => 'edd_coupon',
+                                )
+                            ) ),
+
+                        Field::make( 'text', 'optinspin_coupon_text_label', 'Coupon Text Label' )
+                            ->set_conditional_logic( array(
+                                array(
+                                    'field' => 'optinspin_coupon_type',
+                                    'value' => 'coupon_text',
+                                )
+                            ) ),
+
+                        Field::make( 'text', 'optinspin_coupon_link_label', 'Coupon Link Label' )
+                            ->set_conditional_logic( array(
+                                array(
+                                    'field' => 'optinspin_coupon_type',
+                                    'value' => 'coupon_link',
+                                )
+                            ) ),
+
+                        Field::make( 'text', 'optinspin_coupon_link_url', 'Coupon Link URL' )
+                            ->set_conditional_logic( array(
+                                array(
+                                    'field' => 'optinspin_coupon_type',
+                                    'value' => 'coupon_link',
                                 )
                             ) ),
 
@@ -191,6 +215,27 @@ Class optinspin_Settings {
                     ->set_classes( 'optinspin_general_pro' ),
             ) )
 
+            ->add_tab( __('Triggers'), array(
+
+                Field::make( 'separator', 'optinspin_wheel_clickable_tab', 'Open Spin By Clickable Tab' ),
+
+                Field::make( 'checkbox', 'optinspin_enable_clickable_tab_desktop', 'Show Clickable Tab on Desktop' )
+                    ->set_option_value( 'Enable Time Delay Popup on Deskto' ),
+
+                Field::make( 'checkbox', 'optinspin_enable_clickable_tab_mobile', 'Show Clickable Tab on Mobile' )
+                    ->set_option_value( 'Enable Intent Exit Popup on Mobile' ),
+
+                Field::make( 'html', 'crb_pro_text_trigger' )
+                    ->set_html( '<div class="optinspin-pro-head"><h1>OptinSpin <span>PRO</span></h1></div>
+                        <div class="optinspin-pro-list">
+                        <p>Enable Time Delay Optin on Desktop</p>
+                        <p>Enable Time Delay Optin on Mobile</p>
+                        <p>Enable Intent Exit Popup for Desktop</p>
+                        <p>Enable Intent Exit Popup for Mobile</p></div>'
+                    )
+                    ->set_classes( 'optinspin_general_pro' ),
+            ) )
+
             ->add_tab( __('Integration'), array(
 
                 Field::make( 'separator', 'optinspin_mailchimp_label', 'Mail Chimp' )
@@ -199,19 +244,19 @@ Class optinspin_Settings {
                 Field::make( 'text', 'optinspin_mailchimp_api_key', 'API KEY' )
                     ->set_help_text('Enter Mailchimp API Key'),
 
-             	Field::make( 'select', 'crb_show_socials', 'Mailchimp Email Lists' )
-					->add_options( $arraysfor_optinspin_mailchimp_get_list ),
+                Field::make( 'select', 'crb_show_socials', 'Mailchimp Email Lists' )
+                    ->add_options( $arraysfor_optinspin_mailchimp_get_list ),
 
-				Field::make( 'radio', 'opt_ins', 'Single Opt-in Or Double Opt-in' )
-				->add_options( array(
-					'single' => 'Single Opt-in',
-					'double' => 'Double Opt-in'
-				) ),
+                Field::make( 'radio', 'opt_ins', 'Single Opt-in Or Double Opt-in' )
+                    ->add_options( array(
+                        'single' => 'Single Opt-in',
+                        'double' => 'Double Opt-in'
+                    ) ),
 
-				Field::make( 'text', 'optinspin_mailchimp_get_list', 'Get Mailchimp Email List' )
-				->set_default_value( 'Get Mailchimp Email List' )
-				->set_attribute( 'type', 'button' )
-				->set_classes( 'get_mailchimp' ),
+                Field::make( 'text', 'optinspin_mailchimp_get_list', 'Get Mailchimp Email List' )
+                    ->set_default_value( 'Get Mailchimp Email List' )
+                    ->set_attribute( 'type', 'button' )
+                    ->set_classes( 'get_mailchimp' ),
 
                 Field::make( 'separator', 'optinspin_chatchamp', 'ChatChamp' )
                     ->set_classes( 'optinspin_chatchamp_label_class' ),
@@ -230,6 +275,7 @@ Class optinspin_Settings {
                     )
                     ->set_classes( 'optinspin_general_pro' ),
             ))
+
             ->add_tab( __('Winning/Lossing'), array(
                 Field::make( 'color', 'optinspin_win_background_color', 'Background Color' )
                     ->set_palette( array( '#FF0000', '#00FF00', '#0000FF' ) )
@@ -278,8 +324,7 @@ Class optinspin_Settings {
                         </div>'
                     )
                     ->set_classes( 'optinspin_general_pro' ),
-            ))
-            ->add_tab( __('Additional CSS'), array(
+
                 Field::make( 'textarea', 'optinspin_custom_css', 'Custom CSS' )
                     ->set_help_text( 'Apply Custom CSS' )
                     ->set_default_value('/**
@@ -288,9 +333,15 @@ You Custom CSS
                     ->set_rows( 10 ),
             ))
 
-        ->add_tab( __('Get PRO'), array(
-            Field::make( 'html', 'crb_more_pro' )
-                ->set_html( '<div class="optinspin-pro-head"><h1>OptinSpin <span>PRO</span></h1></div>
+            ->add_tab( __('Ready'), array(
+                Field::make( 'html', 'crb_information_ready' )
+                    ->set_html( '<div class="opt-wheel-ready-wrapper">
+                        <h1>GREAT! YOUR WHEEL IS READY <i class="fas fa-thumbs-up"></i></h1> 
+                        <p class="opt-ready-text">Your wheel is ready to spin.</p>
+                        <p><i class="fas fa-cog"></i></p>
+                    </div>
+                    
+                    <div class="optinspin-pro-head"><h1>OptinSpin <span class="opt-premium">Premium</span></h1></div>
                         <div class="optinspin-pro-list">
 
                         <p>Enable Cart Redirect After winning</p>
@@ -313,16 +364,48 @@ You Custom CSS
                         <p>Option to Add Privay Link</p>
                         <p>Option to Customize Email Templates</p>
                         <p>Option to Customize Coupon Bar</p>
+                        <p>and many more...</p>
+                        <a href="https://codecanyon.net/item/optinspin-fortune-wheel-fully-integrated-with-woocommerce-coupons/20768678">Get Pro Now</a>
+                    </div>' )
+            ))
+
+            ->add_tab( __('Get PRO'), array(
+                Field::make( 'html', 'crb_more_pro' )
+                    ->set_html( '<div class="optinspin-pro-head"><h1>OptinSpin <span>PRO</span></h1></div>
+                        <div class="optinspin-pro-list">
+
+                        <p>Enable Cart Redirect After winning</p>
+                        <p>Enable Sound Of Wheel</p>
+                        <p>Enable Party Poopers After winnign</p>
+
+                        <p>Enable Time Delay Optin on Desktop</p>
+                        <p>Enable Time Delay Optin on Mobile</p>
+                        <p>Enable Intent Exit Popup for Desktop</p>
+                        <p>Enable Intent Exit Popup for Mobile</p>
+
+                        <p>Option to Drag& Drop Section</p>
+                        <p>Unlimited Sections</p>
+                        <p>Option to Generate Coupon Dynamically</p>
+
+                        <p>Option To Enable Email with Remarkety</p>
+
+                        <p>Add to cart Afer winning</p>
+
+                        <p>Option to Add Privay Link</p>
+                        <p>Option to Customize Email Templates</p>
+                        <p>Option to Customize Coupon Bar</p>
+                        <a href="https://codecanyon.net/item/optinspin-fortune-wheel-fully-integrated-with-woocommerce-coupons/20768678">Get Pro Now</a>
                         </div>'
-                )
+                    )
 
-                ->set_classes( 'optinspin_general_pro' ),
+                    ->set_classes( 'optinspin_general_pro' ),
 
-            Field::make( 'html', 'crb_more_pro_link' )
-                ->set_html('<a href="https://codecanyon.net/item/optinspin-fortune-wheel-fully-integrated-with-woocommerce-coupons/20768678">Get Pro Now</a>')
-                ->set_classes( 'optinspin_get_pro' ),
-        ));
+                Field::make( 'html', 'crb_more_pro_link' )
+                    ->set_html('<a href="https://codecanyon.net/item/optinspin-fortune-wheel-fully-integrated-with-woocommerce-coupons/20768678">Get Pro Now</a>')
+                    ->set_classes( 'optinspin_get_pro' ),
+            ));
 
+			do_action('opt_after_settings');
     }
 
     function optinspin_crb_load() {
@@ -346,6 +429,44 @@ You Custom CSS
         }
 
         return $coupons_list;
+    }
+
+    function get_edd_coupon_list() {
+        $coupons_list = array();
+        $args = array(
+            'posts_per_page'   => -1,
+            'orderby'          => 'title',
+            'order'            => 'asc',
+            'post_type'        => 'edd_discount',
+            'post_status'      => 'any',
+        );
+
+        $coupons = get_posts( $args );
+        foreach( $coupons as $coupon ) {
+            $coupons_list[$coupon->ID] = $coupon->post_title;
+        }
+
+        return $coupons_list;
+    }
+
+    function optinspin_coupon_options() {
+
+        $coupon_options = array();
+
+        if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+            $coupon_options['woocommere_coupon'] = 'WooCommerce Coupon';
+
+        if( in_array( 'easy-digital-downloads/easy-digital-downloads.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) )
+            $coupon_options['edd_coupon'] = 'Easy Digital Downloads Coupon';
+
+        $coupon_values = array(
+            'coupon_text' => 'Coupon Text',
+            'coupon_link' => 'Coupon Link',
+        );
+
+        $coupon_values = array_merge($coupon_options,$coupon_values);
+
+        return $coupon_values;
     }
 
     function optinspin_lists_of_pages() {
